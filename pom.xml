@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.octiq.test</groupId>
+    <artifactId>invalid-dependencies</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- INVALID #1: group/artifact does not exist anywhere -->
+        <dependency>
+            <groupId>com.nonexistent.fakegroup</groupId>
+            <artifactId>fake-artifact-does-not-exist</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- INVALID #2: real artifact, version that was never released -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>99.99.99</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    // To test the "unresolvable plugin" scenario, UNCOMMENT the next line.
+    // The build then fails at plugin resolution, BEFORE the broken dependencies below are evaluated.
+    // id 'com.nonexistent.fake-plugin' version '1.2.3'
+}
+
+group = 'com.octiq.test'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // INVALID #1: group/artifact does not exist anywhere
+    implementation 'com.nonexistent.fakegroup:fake-artifact-does-not-exist:1.0.0'
+    // INVALID #2: real artifact, version that was never released
+    implementation 'org.apache.commons:commons-lang3:99.99.99'
+}
